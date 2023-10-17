@@ -21,3 +21,4 @@ rr
 .rr.yaml
 .editorconfig
 db_data/
+..gitignore.swp
