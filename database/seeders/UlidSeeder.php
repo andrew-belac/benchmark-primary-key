@@ -31,6 +31,7 @@ class UlidSeeder extends Seeder
                 'id' => $insert[0]['id'],
                 'type' => 'ulid'
             ]);
+            unset($insert);
         }
     }
 }

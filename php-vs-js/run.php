@@ -1,8 +1,7 @@
 <?php
-
 $numbers = range(1, 10_000_000);
-$start = microtime(true);
 $sum = 0;
+$start = microtime(true);
 foreach ($numbers as $number) {
     $sum += $number;
 }

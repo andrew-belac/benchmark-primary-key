@@ -10,11 +10,11 @@ services:
       MYSQL_DATABASE: test_primary_key
       MYSQL_USER: test_user
       MYSQL_PASSWORD: test_password
-#    deploy:
-#      resources:
-#        limits:
-#          cpus: "1.0"
-#          memory: 300M
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 300M
     volumes:
       - ./db_data:/var/lib/mysql
 

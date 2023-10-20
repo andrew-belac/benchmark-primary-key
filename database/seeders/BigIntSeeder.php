@@ -28,6 +28,7 @@ class BigIntSeeder extends Seeder
                 'id' => (string) $insert[0]['id'],
                 'type' => 'bigint'
             ]);
+            unset($insert);
         }
     }
 }
