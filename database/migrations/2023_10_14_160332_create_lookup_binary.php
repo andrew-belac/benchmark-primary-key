@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stats', function (Blueprint $table) {
-            $table->id();
+        Schema::create('lookup_binary', function (Blueprint $table) {
+            $table->char('id', 16)->charset('binary')->primary();
             $table->string('type', 10)->index();
-            $table->string('stat_type', 20)->index();
-            $table->double('duration');
+            $table->timestamps();
         });
     }
 

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Carbon\CarbonImmutable;
+use Carbon\Carbon;
 use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +17,12 @@ class V7Base58Seeder extends Seeder
     {
         //** @var Generator $faker */
         $faker = app()->make(Generator::class);
-        $orderDate = CarbonImmutable::createFromFormat('Y-m-d H:i:s.u', '1970-01-02 00:00:00.000000');
-        for ($count = 0; $count < 10000; $count++) {
+        $orderDate = Carbon::createFromFormat('Y-m-d H:i:s.u', '1970-01-02 00:00:00.000000');
+        for ($count = 0; $count < 100000; $count++) {
             $insert = [];
             for ($i = 0; $i < 1000; $i++){
-                $insert[] = ['name' => $faker->name(), 'id'=>Uuid::v7()->toBase58(), 'order_date' => $orderDate->format('Y-m-d H:i:s.u')];
-                $orderDate = $orderDate->addMillis(10);
+                $insert[] = ['name' => $faker->name(), 'id'=>Uuid::v7()->toBase58(), 'order_date' =>
+                    $orderDate->addMillis(1)->format('Y-m-d H:i:s.u')];
             }
             try {
                 DB::table('uuid_v7_base58')->insert($insert);
@@ -30,6 +30,8 @@ class V7Base58Seeder extends Seeder
                     'id' => $insert[0]['id'],
                     'type' => 'v758'
                 ]);
+                unset($insert);
+                usleep(10000);
             } catch (\Throwable $e){
                 echo $e->getMessage();
                 $count--;

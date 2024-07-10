@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stats', function (Blueprint $table) {
-            $table->id();
-            $table->string('type', 10)->index();
-            $table->string('stat_type', 20)->index();
-            $table->double('duration');
+        Schema::create('uuid_v7_binary', function (Blueprint $table) {
+            $table->char('id', 16)->charset('binary')->primary();
+            $table->string('name', 100);
+            $table->timestamp('order_date', 6)->index();
         });
+
     }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stats');
+        Schema::dropIfExists('uuid_v7');
     }
 };
